@@ -1,0 +1,18 @@
+[
+  {
+    "friendly_name": "CWE-117 identified in app.dll",
+    "process_policy": true,
+    "process_sandboxes": true,
+    "sandboxes": [
+      "Release"
+    ],
+    "cwe": 117,
+    "module": "app.dll",
+    "file_path": "app/controllers/portalcontroller.cs",
+    "attack_vector": "microsoft_extensions_logging_abstractions_dll.Microsoft.Extensions.Logging.LoggerExtensions.LogInformation",
+    "line_number": 75,
+    "mitigate_by_design": "Technique : M1 :  Establish and maintain control over all of your inputs\nSpecifics : TODO\nRemaining Risk : TODO\nVerification : TODO",
+    "accept_risk": "Specifics : TODO\nRemaining Risk : TODO\nVerification : TODO",
+    "approve": "TODO"
+  }
+]
