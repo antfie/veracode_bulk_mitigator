@@ -3,8 +3,6 @@ from veracode_api_py.api import VeracodeAPI, Applications, Sandboxes, Findings
 from rich.console import Console
 from time import sleep
 from random import randint
-import sys
-import urllib3
 import logging
 from threading import Lock
 
@@ -12,11 +10,6 @@ from threading import Lock
 logging.getLogger("urllib3").setLevel(logging.CRITICAL)
 logging.getLogger("requests").setLevel(logging.CRITICAL)
 logging.getLogger("veracode_api_py.apihelper").setLevel(logging.CRITICAL)
-# urllib3.disable_warnings(urllib3.exceptions.HTTPWarning)
-# urllib3.disable_warnings(urllib3.exceptions.NameResolutionError)
-# urllib3.disable_warnings(urllib3.exceptions.MaxRetryError)
-# urllib3.disable_warnings(urllib3.exceptions.NameResolutionError)
-# sys.tracebacklimit = 0
 
 
 class API:
