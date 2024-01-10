@@ -91,11 +91,11 @@ In the example below you can see how to use the [TSRV](https://docs.veracode.com
 When running locally it helps to cache some of the requests. Use this flag to do that:
 
 ```bash
-pipenv run bulk_mitigator --application_cache_file_path=data/application_cache.csv
+python -m pipenv run bulk_mitigator --application_cache_file_path=data/application_cache.csv
 ```
 
 There is a script to lint the code, keep dependencies up to date and run some tests:
 
 ```bash
-pipenv run test
+python -m pipenv run test
 ```
