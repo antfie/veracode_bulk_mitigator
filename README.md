@@ -23,7 +23,7 @@ Example output:
 The following components are required to run this tool:
 
 * [Python 3](https://www.python.org/downloads/)
-* [Pipenv](https://pipenv.pypa.io/) which can be installed using `pip install --user pipenv`
+* [Pipenv](https://pipenv.pypa.io/) which can be installed using `pip install --user --upgrade pipenv`
 * [Veracode API credentials file](https://docs.veracode.com/r/c_api_credentials3)
 
 ## Running
@@ -47,7 +47,7 @@ mitigations.json can contain a number of bulk mitigation definitions.
 | process_sandboxes  | Set to `true` to process sandbox scans.                                                              |
 | sandboxes          | This is an array of sandbox names to process. If the array is empty all sandboxes will be processed. |
 | cwe                | The CWE id to match.                                                                                 |
-| module             | The specific module name* to match.                                                                  |
+| module             | The module name* to match.                                                                           |
 | file_path          | The file path* to match.                                                                             |
 | attack_vector      | The attack vector* to match                                                                          |
 | line_number        | The line number to match.                                                                            |
@@ -84,18 +84,28 @@ In the example below you can see how to use the [TSRV](https://docs.veracode.com
 
 ## Future Features
 
-* The ability to work across all applications
+* The ability to work across all applications.
+
+## Troubleshooting
+
+If you experience issues running pipenv see this [guide](https://pipenv.pypa.io/en/latest/installation.html). On Windows you may need to update your path environment variable. Alternatively try running via python:
+
+```bash
+python3 -m pipenv run bulk_mitigator
+```
+
+As a last ditch you could just run the python file after manually pip-installing the individual packages from the Pipfile.
 
 ## Development
 
 When running locally it helps to cache some of the requests. Use this flag to do that:
 
 ```bash
-python -m pipenv run bulk_mitigator --application_cache_file_path=data/application_cache.csv
+pipenv run bulk_mitigator --application_cache_file_path=data/application_cache.csv
 ```
 
 There is a script to lint the code, keep dependencies up to date and run some tests:
 
 ```bash
-python -m pipenv run test
+pipenv run test
 ```
