@@ -125,7 +125,7 @@ def main(
         )
 
     if len(mitigations_to_add) < 1:
-        console.log(f"There are no mitigations to apply.")
+        console.log("There are no mitigations to apply.")
         return
 
     mitigations_to_add = sort_and_filter_mitigations(mitigations_to_add)
