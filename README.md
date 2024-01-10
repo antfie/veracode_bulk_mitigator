@@ -14,6 +14,10 @@ For targeted mitigation the tool will check for all 5 matching signatures when c
 4. Attack vector
 5. Line Number
 
+Example output:
+
+![example.png](docs%2Fexample.png)
+
 ## Requirements
 
 The following components are required to run this tool:
@@ -93,5 +97,5 @@ pipenv run bulk_mitigator --application_cache_file_path=data/application_cache.c
 There is a script to lint the code, keep dependencies up to date and run some tests:
 
 ```bash
-pipenv run ./test.sh
+pipenv run test
 ```

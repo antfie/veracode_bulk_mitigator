@@ -17,3 +17,4 @@ python_version = "3.12"
 
 [scripts]
 bulk_mitigator = "python bulk_mitigator.py"
+test = "./scripts/test.sh"
