@@ -40,20 +40,20 @@ The following components are required to run this tool:
 
 mitigations.json can contain a number of bulk mitigation definitions.
 
-| Property           | Notes                                                                                                |
-|--------------------|------------------------------------------------------------------------------------------------------|
-| friendly_name      | A friendly name only used by this tool when producing the report.                                    |
-| process_policy     | Set to `true` to process policy-level scans.                                                         |
-| process_sandboxes  | Set to `true` to process sandbox scans.                                                              |
-| sandboxes          | This is an array of sandbox names to process. If the array is empty all sandboxes will be processed. |
-| cwe                | The CWE id to match.                                                                                 |
-| module             | The module name* to match.                                                                           |
-| file_path          | The file path* to match.                                                                             |
-| attack_vector      | The attack vector* to match                                                                          |
-| line_number        | The line number to match.                                                                            |
-| mitigate_by_design | If this is present the value will be the Mitigate By Design comment.                                 |
-| accept_risk        | If this is present the value will be the Accept The Risk comment.                                    |
-| approve            | If this is present the value will be the Approve comment.                                            |
+| Property           | Notes                                                                                               |
+|--------------------|-----------------------------------------------------------------------------------------------------|
+| friendly_name      | A friendly name only used by this tool when producing the report                                    |
+| process_policy     | Set to `true` to process policy-level scans                                                         |
+| process_sandboxes  | Set to `true` to process sandbox scans                                                              |
+| sandboxes          | This is an array of sandbox names to process. If the array is empty all sandboxes will be processed |
+| cwe                | The CWE id to match                                                                                 |
+| module             | The module name* to match                                                                           |
+| file_path          | The file path* to match                                                                             |
+| attack_vector      | The attack vector* to match                                                                         |
+| line_number        | The line number to match                                                                            |
+| mitigate_by_design | If this is present the value will be the Mitigate By Design comment                                 |
+| accept_risk        | If this is present the value will be the Accept The Risk comment                                    |
+| approve            | If this is present the value will be the Approve comment                                            |
 
 * You can find this information from the Flaw Details section of the Triage Flaws page. 
 
