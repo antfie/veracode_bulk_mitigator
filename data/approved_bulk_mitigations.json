@@ -12,6 +12,7 @@
     "attack_vector": "microsoft_extensions_logging_abstractions_dll.Microsoft.Extensions.Logging.LoggerExtensions.LogInformation",
     "line_number": 75,
     "mitigate_by_design": "Technique : M1 :  Establish and maintain control over all of your inputs\nSpecifics : TODO\nRemaining Risk : TODO\nVerification : TODO",
+    "false_positive": "TODO",
     "accept_risk": "Specifics : TODO\nRemaining Risk : TODO\nVerification : TODO",
     "approve": "TODO"
   }

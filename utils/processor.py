@@ -69,6 +69,20 @@ def is_candidate_for_bulk_mitigation(
     # If we are only proposing a mitigation by design and that mitigation is already the latest then there is nothing to do
     if (
         bulk_mitigation.mitigate_by_design is not None
+        and bulk_mitigation.false_positive is None
+        and bulk_mitigation.accept_risk is None
+    ):
+        if (
+            last_annotation["action"] == "APPDESIGN"
+            and bulk_mitigation.mitigate_by_design.strip()
+            == last_annotation["comment"].strip()
+        ):
+            return False
+
+    # If we are only proposing a false positive and that mitigation is already the latest then there is nothing to do
+    if (
+        bulk_mitigation.false_positive is not None
+        and bulk_mitigation.mitigate_by_design is None
         and bulk_mitigation.accept_risk is None
     ):
         if (
@@ -82,6 +96,7 @@ def is_candidate_for_bulk_mitigation(
     if (
         bulk_mitigation.accept_risk is not None
         and bulk_mitigation.mitigate_by_design is None
+        and bulk_mitigation.false_positive is None
     ):
         if (
             last_annotation["action"] == "ACCEPTRISK"

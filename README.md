@@ -51,9 +51,10 @@ mitigations.json can contain a number of bulk mitigation definitions.
 | file_path          | The file path* to match                                                                             |
 | attack_vector      | The attack vector* to match                                                                         |
 | line_number        | The line number to match                                                                            |
-| mitigate_by_design | If this is present the value will be the Mitigate By Design comment                                 |
-| accept_risk        | If this is present the value will be the Accept The Risk comment                                    |
-| approve            | If this is present the value will be the Approve comment                                            |
+| mitigate_by_design | If this is present propose a Mitigate By Design mitigation                                          |
+| false_positive     | If this is present propose a False Positive mitigation                                              |
+| accept_risk        | If this is present propose an Accept The Risk mitigation                                            |
+| approve            | If this is present the mitigation will be approved                                                  |
 
 * You can find this information from the Flaw Details section of the Triage Flaws page. 
 
@@ -76,6 +77,7 @@ In the example below you can see how to use the [TSRV](https://docs.veracode.com
     "attack_vector": "microsoft_extensions_logging_abstractions_dll.Microsoft.Extensions.Logging.LoggerExtensions.LogInformation",
     "line_number": 75,
     "mitigate_by_design": "Technique : M1 :  Establish and maintain control over all of your inputs\nSpecifics : TODO\nRemaining Risk : TODO\nVerification : TODO",
+    "false_positive": "TODO",
     "accept_risk": "Specifics : TODO\nRemaining Risk : TODO\nVerification : TODO",
     "approve": "TODO"
   }
@@ -88,13 +90,13 @@ In the example below you can see how to use the [TSRV](https://docs.veracode.com
 
 ## Troubleshooting
 
-If you experience issues running pipenv see this [guide](https://pipenv.pypa.io/en/latest/installation.html). On Windows you may need to update your path environment variable. Alternatively try running via python:
+If you experience issues running pipenv see this [guide](https://pipenv.pypa.io/en/latest/installation.html). On Windows you may need to update your path environment variable. Alternatively try running pipenv via python like so:
 
 ```bash
 python3 -m pipenv run bulk_mitigator
 ```
 
-Consider using pip:
+Finally, consider using pip to install the dependencies:
 
 ```bash
 python3 -m pip install --user -r requirements.txt
