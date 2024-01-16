@@ -94,7 +94,12 @@ If you experience issues running pipenv see this [guide](https://pipenv.pypa.io/
 python3 -m pipenv run bulk_mitigator
 ```
 
-As a last ditch you could just run the python file after manually pip-installing the individual packages from the Pipfile.
+Consider using pip:
+
+```bash
+python3 -m pip install --user -r requirements.txt
+python3 bulk_mitigator.py
+```
 
 ## Development
 
