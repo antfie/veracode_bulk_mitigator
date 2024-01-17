@@ -53,6 +53,15 @@ class API:
                 self.console.log("Error: Giving up, too many request errors.")
                 exit(1)
 
+    def get_all_applications(self):
+        self.update_counter(f"get_all_applications")
+
+        try:
+            return Applications().get_all()
+        except Exception as err:
+            self.back_off(err)
+            return self.get_all_applications()
+
     def get_applications_by_name(self, application_name: str):
         self.update_counter(f"get_applications_by_name:{application_name}")
 

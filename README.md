@@ -28,17 +28,29 @@ The following components are required to run this tool:
 
 ## Running
 
-1. Ensure you have configured and reviewed appropriate mitigation signatures in `data/approved_bulk_mitigations.json` (see below for the structure of this file).
-2. Make sure you have added a list of applications to `data/application_names.txt`. It may be appropriate to use a single application to test the process before adding all candidate applications. This is simply a text file of application profile names, one per line.
+1. Ensure you have configured and reviewed appropriate mitigation signatures in `data/approved_bulk_mitigations.json` (see below for the documentation of this file).
+2. Make sure you have added a list of applications to `data/application_names.txt`, or alternatively to run against all application profiles, set this flag when running the tool `--all-application-profiles=true`.  
 3. Run the below command to run the tool. Note that the tool will not make any changes unless you enter "y" at the prompt following the summary of mitigations to add.
 
     ```bash
     pipenv run bulk_mitigator
     ```
 
+## Command Arguments
+
+| Argument                      | Default Value                       | Notes                                                                                     |
+|-------------------------------|-------------------------------------|-------------------------------------------------------------------------------------------|
+| --mitigations-file            | data/approved_bulk_mitigations.json | The file path to mitigations.json                                                         |
+| --all-application-profiles    | false                               | Set to `true` to process all application profiles                                         |
+| --application-names-file      | data/application_names.txt          | The file path to a text file listing application names, per line          |
+| --number-of-threads           | 10                                  | The number of threads to use for making simultanious API calls                            |
+| --application-cache-file-path |                                    | A path to a CSV file to be used for caching application and sandbox name to GUID mappings |
+
+
+
 ## mitigations.json File Format
 
-mitigations.json can contain a number of bulk mitigation definitions.
+mitigations.json is a JSON file which can contain a number of bulk mitigation definitions.
 
 | Property           | Notes                                                                                               |
 |--------------------|-----------------------------------------------------------------------------------------------------|
@@ -84,10 +96,6 @@ In the example below you can see how to use the [TSRV](https://docs.veracode.com
 ]
 ```
 
-## Future Features
-
-* The ability to work across all applications.
-
 ## Troubleshooting
 
 If you experience issues running pipenv see this [guide](https://pipenv.pypa.io/en/latest/installation.html). On Windows you may need to update your path environment variable. Alternatively try running pipenv via python like so:
@@ -108,7 +116,7 @@ python3 bulk_mitigator.py
 When running locally it helps to cache some of the requests. Use this flag to do that:
 
 ```bash
-pipenv run bulk_mitigator --application_cache_file_path=data/application_cache.csv
+pipenv run bulk_mitigator --application-cache-file-path=data/application_cache.csv
 ```
 
 There is a script to lint the code, keep dependencies up to date and run some tests:

@@ -36,7 +36,9 @@ class BulkMitigation:
         self.mitigate_by_design = (
             None if "mitigate_by_design" not in data else data["mitigate_by_design"]
         )
-        self.false_positive = None if "false_positive" not in data else data["false_positive"]
+        self.false_positive = (
+            None if "false_positive" not in data else data["false_positive"]
+        )
         self.accept_risk = None if "accept_risk" not in data else data["accept_risk"]
         self.approve = None if "approve" not in data else data["approve"]
 
@@ -51,10 +53,7 @@ class BulkMitigation:
             )
             exit(1)
 
-        if (
-            self.mitigate_by_design is not None
-            and self.false_positive is not None
-        ):
+        if self.mitigate_by_design is not None and self.false_positive is not None:
             console.log(
                 f'Bulk mitigation "{self.friendly_name}" cannot specify both "mitigate_by_design" and "false_positive".'
             )

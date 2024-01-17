@@ -7,7 +7,7 @@ from rich.prompt import Confirm
 
 from utils.api import API
 from utils.bulk_mitigate import bulk_mitigate
-from utils.list_of_applications import acquire_applications
+from utils.list_of_applications import load_applications_from_file, acquire_applications
 from utils.bulk_mitigations_file import BulkMitigations
 from utils.processor import process, MitigationToAdd
 
@@ -69,32 +69,39 @@ def sort_and_filter_mitigations(
 
 @click.command()
 @click.option(
-    "--application_names_file",
-    default="data/application_names.txt",
-    type=click.File("r", encoding="utf-8"),
-    help="A text file containing application names, one per line.",
-)
-@click.option(
-    "--mitigations_file",
+    "--mitigations-file",
     default="data/approved_bulk_mitigations.json",
     type=click.File("r", encoding="utf-8"),
     help="A JSON file containing bulk mitigation details.",
 )
 @click.option(
-    "--number_of_threads",
+    "--all-application-profiles",
+    default=False,
+    type=click.BOOL,
+    help="Set this to true to analyse all application profiles",
+)
+@click.option(
+    "--application-names-file",
+    default="data/application_names.txt",
+    type=click.STRING,
+    help="A text file containing application names, one per line. This is ignored if --all-application-profiles is set.",
+)
+@click.option(
+    "--number-of-threads",
     default=10,
     type=click.INT,
     help="Number of threads to use.",
 )
 @click.option(
-    "--application_cache_file_path",
+    "--application-cache-file-path",
     default=None,
     type=click.STRING,
     help="A text file containing application name to guid mappings, one per line.",
 )
 def main(
-    application_names_file: IO[str],
     mitigations_file: IO[str],
+    all_application_profiles: bool,
+    application_names_file: str,
     number_of_threads: int,
     application_cache_file_path: str,
 ):
@@ -105,11 +112,22 @@ def main(
     bulk_mitigations = BulkMitigations(console, mitigations_file)
     api = API(console)
 
+    application_names = []
+
+    if all_application_profiles:
+        console.log(f"Identifying all applications...")
+        # Try to resolve all application names
+        all_applications = api.get_all_applications()
+        for application in all_applications:
+            application_names.append(application["profile"]["name"])
+    else:
+        application_names = load_applications_from_file(application_names_file)
+
     applications_to_process = acquire_applications(
         console,
         api,
         bulk_mitigations,
-        application_names_file,
+        application_names,
         application_cache_file_path,
         number_of_threads,
     )

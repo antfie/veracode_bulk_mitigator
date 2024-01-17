@@ -85,11 +85,28 @@ class ApplicationCache:
         return None
 
 
+def load_applications_from_file(applications_file_path: str) -> list[str]:
+    application_names = []
+
+    with open(applications_file_path, "r") as applications_file:
+        for line in applications_file.readlines():
+            # Trim
+            application_name = line.strip()
+
+            # Ignore empty lines
+            if len(application_name) < 1:
+                continue
+
+            application_names.append(application_name)
+
+    return application_names
+
+
 def acquire_applications(
     console: Console,
     api: API,
     bulk_mitigations: BulkMitigations,
-    applications_file: IO[str],
+    application_names: list[str],
     application_cache_file_path: str,
     number_of_threads: int,
 ) -> list[AppSandboxInfo]:
@@ -98,12 +115,9 @@ def acquire_applications(
     mappings = {}
     applications_to_resolve = []
 
-    for line in applications_file.readlines():
-        # Trim
-        application_name = line.strip()
-
-        # Ignore empty lines
-        if len(application_name) < 1:
+    for application_name in application_names:
+        # Ignore any duplicate names which may have crept in via the file or API
+        if application_name in applications_to_resolve:
             continue
 
         cached = cache.get_by_application_name(application_name)
