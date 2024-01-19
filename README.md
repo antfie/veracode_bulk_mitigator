@@ -42,9 +42,9 @@ The following components are required to run this tool:
 |-------------------------------|-------------------------------------|-------------------------------------------------------------------------------------------|
 | --mitigations-file            | data/approved_bulk_mitigations.json | The file path to mitigations.json                                                         |
 | --all-application-profiles    | false                               | Set to `true` to process all application profiles                                         |
-| --application-names-file      | data/application_names.txt          | The file path to a text file listing application names, per line          |
+| --application-names-file      | data/application_names.txt          | The file path to a text file listing application names, per line                          |
 | --number-of-threads           | 10                                  | The number of threads to use for making simultanious API calls                            |
-| --application-cache-file-path |                                    | A path to a CSV file to be used for caching application and sandbox name to GUID mappings |
+| --application-cache-file-path |                                     | A path to a CSV file to be used for caching application and sandbox name to GUID mappings |
 
 
 
