@@ -113,11 +113,15 @@ python3 bulk_mitigator.py
 
 ## Development
 
-When running locally it helps to cache some of the requests. Use this flag to do that:
+When repeatedly running the tool it helps to cache some of the requests to speed things up. Use this flag to do that:
 
 ```bash
 pipenv run bulk_mitigator --application-cache-file-path=data/application_cache.csv
 ```
+
+Note that if an application or sandbox is renamed/added/deleted then the cache may have stale data, so it is recommended to clear the cache file regularly.
+
+## Development
 
 There is a script to lint the code, keep dependencies up to date and run some tests:
 
