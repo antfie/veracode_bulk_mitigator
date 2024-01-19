@@ -25,7 +25,7 @@ def print_summary(mitigations_to_add: list[MitigationToAdd]):
     )
 
     table = Table()
-    table.add_column("Application")
+    table.add_column("Application Profile")
     table.add_column("Sandbox")
     table.add_column("Mitigation Name")
     table.add_column("Flaw ID")

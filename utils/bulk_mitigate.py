@@ -11,6 +11,7 @@ def bulk_mitigate(
     number_of_threads: int,
 ):
     def perform_mitigation(mitigation: MitigationToAdd):
+        console.log(f"Mitigating flaw #{mitigation.flaw_number} in application profile '{mitigation.app_info.application_name}'...")
         for action, comment in mitigation.bulk_mitigation.get_actions().items():
             if len(mitigation.annotations) > 0:
                 last_annotation = mitigation.annotations[0]
