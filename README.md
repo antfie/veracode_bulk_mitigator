@@ -2,11 +2,30 @@
 
 **Note this tool is not an official Veracode product. It comes with no support or warranty.**
 
-This tool attempts to bulk mitigate any un-mitigated SAST flaws found within specific application profiles. The definitions of what to mitigate and the mitigation comments and actions are defined in a JSON file.
+## Introduction
 
-The tool is primarily intended for use by security teams because it is useful for bulk-approving mitigations that have been reviewed, where those flaws arise form 2nd party components that are reported in more than one application profile.
+This tool performs bulk mitigation actions on open SAST flaws reported in multiple application profiles. The definitions of what to mitigate (e.g. file name, line number) and the mitigation comments and actions to apply are defined via a JSON file. Application profile names to target are specified via a text file or alternatively a flag can be set to process all application profiles.
 
-Development teams/security mentors could use this tool to propose mitigations for a flaw that is reported in a number of application profiles (e.g. microservices), but they would likely be unable to approve the mitigations themselves.
+There are two primary uses cases this tool solves:
+1. Bulk mitigating flaws - useful for development teams/security champions
+2. Bulk accepting mitigated flaws - useful for security teams
+
+### 1. Bulk Mitigating Flaws
+
+Development teams or security mentors could use this tool to propose mitigations (e.g. Mitigate By Design, False Positive) for idential flaws that are reported in a number of application profiles.
+
+### 2. Bulk Accepting Mitigated Flaws
+
+The tool can be used by security teams for bulk-approving mitigations that have been reviewed, where those flaws arise form 2nd party components that are reported in more than one application profile.
+
+## Key Features ✅
+
+* Uses the standard [Veracode API credentials file](https://docs.veracode.com/r/c_configure_api_cred_file)
+* Shows a summary before any action is carried out
+* Can propose and/or approve mitigations in bulk
+* Multi-threaded for speed
+
+## What To Mitigate
 
 For targeted mitigation, the tool will check for all 5 matching signatures when considering every open flaw for each application specified:
 
@@ -18,7 +37,11 @@ For targeted mitigation, the tool will check for all 5 matching signatures when 
 
 The applications can be specified using a text file `data/application_names.txt`. It is recommended when testing a new mitigation signature to only use a single application profile name in this text file. Once the tool has been verified to work as expected the file can be updated to include more profile names, or alternatively specify `--all-application-profiles=true` to apply mitigations across all the application profiles.
 
-The tool will not take any mitigation action until the user explicitly enters "y" to apply the mitigations once a summary of what will be mitigated has been presented. You can see an example below:
+The tool will not take any mitigation action until the user explicitly enters "y" to apply the mitigations once a summary of what will be mitigated has been presented.
+
+## Demo
+
+You can see a demo of the tool below:
 
 ![example.png](docs%2Fexample.png)
 
@@ -27,6 +50,13 @@ The tool will not take any mitigation action until the user explicitly enters "y
 The tool can be used to apply a single action or multiple mitigation actions per flaw, for example a "Mitigate By Design" or a "False Positive" followed by an "Approve" action. The tool will make sure they are applied in a logical order. It is not allowed to specify both "Mitigate By Design" and "False Positive" because that does not make sense as only one of those statements can be true.
 
 It is also possible to have an "Accept the Risk" action prior to "Approve" if that is how your organisation wants to operate.
+
+## Authenticating With The Veracode APIs
+
+This tool makes use of the Veracode APIs ([listed below](#outbound-api-calls)). You will need Veracode API credentials
+and the [Reviewer or Security Lead role](https://docs.veracode.com/r/c_API_roles_details#results-api) for this tool to
+work. We recommend you configure
+a [Veracode API credentials file](https://docs.veracode.com/r/c_configure_api_cred_file).
 
 ## Requirements
 
