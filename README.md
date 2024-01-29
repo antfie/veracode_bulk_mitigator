@@ -2,11 +2,13 @@
 
 **Note this tool is not an official Veracode product. It comes with no support or warranty.**
 
-This tool takes a list of application names (from `data/application_names.txt`) and it attempts to bulk mitigate any
-un-mitigated flaws found within those applications as per the approved mitigation signatures as defined
-in `data/approved_bulk_mitigations.json`.
+This tool attempts to bulk mitigate any un-mitigated SAST flaws found within specific application profiles. The definitions of what to mitigate and the mitigation comments and actions are defined in a JSON file.
 
-For targeted mitigation the tool will check for all 5 matching signatures when considering every open flaw for each application specified:
+The tool is primarily intended for use by security teams because it is useful for bulk-approving mitigations that have been reviewed, where those flaws arise form 2nd party components that are reported in more than one application profile.
+
+Development teams/security mentors could use this tool to propose mitigations for a flaw that is reported in a number of application profiles (e.g. microservices), but they would likely be unable to approve the mitigations themselves.
+
+For targeted mitigation, the tool will check for all 5 matching signatures when considering every open flaw for each application specified:
 
 1. CWE
 2. Module name
@@ -14,9 +16,17 @@ For targeted mitigation the tool will check for all 5 matching signatures when c
 4. Attack vector
 5. Line Number
 
-Example output:
+The applications can be specified using a text file `data/application_names.txt`. It is recommended when testing a new mitigation signature to only use a single application profile name in this text file. Once the tool has been verified to work as expected the file can be updated to include more profile names, or alternatively specify `--all-application-profiles=true` to apply mitigations across all the application profiles.
+
+The tool will not take any mitigation action until the user explicitly enters "y" to apply the mitigations once a summary of what will be mitigated has been presented. You can see an example below:
 
 ![example.png](docs%2Fexample.png)
+
+## Multiple Mitigation Actions
+
+The tool can be used to apply a single action or multiple mitigation actions per flaw, for example a "Mitigate By Design" or a "False Positive" followed by an "Approve" action. The tool will make sure they are applied in a logical order. It is not allowed to specify both "Mitigate By Design" and "False Positive" because that does not make sense as only one of those statements can be true.
+
+It is also possible to have an "Accept the Risk" action prior to "Approve" if that is how your organisation wants to operate.
 
 ## Requirements
 
@@ -45,8 +55,6 @@ The following components are required to run this tool:
 | --application-names-file      | data/application_names.txt          | The file path to a text file listing application names, per line                          |
 | --number-of-threads           | 10                                  | The number of threads to use for making simultanious API calls                            |
 | --application-cache-file-path |                                     | A path to a CSV file to be used for caching application and sandbox name to GUID mappings |
-
-
 
 ## mitigations.json File Format
 
