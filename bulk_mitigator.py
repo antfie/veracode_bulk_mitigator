@@ -98,12 +98,19 @@ def sort_and_filter_mitigations(
     type=click.STRING,
     help="A text file containing application name to guid mappings, one per line.",
 )
+@click.option(
+    "--auto-apply-mitigations",
+    default=False,
+    type=click.BOOL,
+    help="Set this to true to skip the prompt and apply the mitigations. Use caution with this flag.",
+)
 def main(
     mitigations_file: IO[str],
     all_application_profiles: bool,
     application_names_file: str,
     number_of_threads: int,
     application_cache_file_path: str,
+    auto_apply_mitigations: bool
 ):
     thread_count_pluralised = "" if number_of_threads == 1 else "s"
     console.log(f"Using {number_of_threads} thread{thread_count_pluralised}")
@@ -116,6 +123,7 @@ def main(
 
     if all_application_profiles:
         console.log(f"Identifying all applications...")
+
         # Try to resolve all application names
         all_applications = api.get_all_applications()
         for application in all_applications:
@@ -150,8 +158,9 @@ def main(
 
     print_summary(mitigations_to_add)
 
-    if not Confirm.ask("Apply mitigations?"):
-        return
+    if auto_apply_mitigations == False:
+        if not Confirm.ask("Apply mitigations?"):
+            return
 
     bulk_mitigate(console, api, mitigations_to_add, number_of_threads)
 
