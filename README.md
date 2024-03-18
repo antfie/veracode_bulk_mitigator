@@ -144,7 +144,7 @@ If you experience issues running pipenv see this [guide](https://pipenv.pypa.io/
 python3 -m pipenv run bulk_mitigator
 ```
 
-Finally, consider using pip to install the dependencies:
+Finally, as a last resort consider using pip to install the dependencies:
 
 ```bash
 python3 -m pip install --user -r requirements.txt
