@@ -49,7 +49,7 @@ You can see a demo of the tool below:
 
 The tool can be used to apply a single action or multiple mitigation actions per flaw, for example a "Mitigate By Design" or a "False Positive" followed by an "Approve" action. The tool will make sure they are applied in a logical order. It is not allowed to specify both "Mitigate By Design" and "False Positive" because that does not make sense as only one of those statements can be true.
 
-It is also possible to have an "Accept the Risk" action prior to "Approve" if that is how your organisation wants to operate.
+It is also possible to propose an "Accept the Risk" action prior to "Approve" if that is how your organisation operates.
 
 ## Authenticating With The Veracode APIs
 
