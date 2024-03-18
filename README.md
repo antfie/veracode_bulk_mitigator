@@ -23,7 +23,7 @@ The tool can be used by security teams for bulk-approving mitigations that have 
 * Uses the standard [Veracode API credentials file](https://docs.veracode.com/r/c_configure_api_cred_file)
 * Shows a summary before any action is carried out
 * Can propose and/or approve mitigations in bulk
-* Multi-threaded for speed
+* Multithreaded for speed
 
 ## What To Mitigate
 
@@ -58,13 +58,14 @@ and the [Reviewer or Security Lead role](https://docs.veracode.com/r/c_API_roles
 work. We recommend you configure
 a [Veracode API credentials file](https://docs.veracode.com/r/c_configure_api_cred_file).
 
-## Requirements
+## Installation 📦
 
-The following components are required to run this tool:
+Follow these steps to install the tool:
 
-* [Python 3](https://www.python.org/downloads/)
-* [Pipenv](https://pipenv.pypa.io/) which can be installed using `pip install --user --upgrade pipenv`
-* [Veracode API credentials file](https://docs.veracode.com/r/c_api_credentials3)
+1. Ensure you have [Python 3](https://www.python.org/downloads/) installed.
+2. Install [Pipenv](https://pipenv.pypa.io/) typically via your package manager or by running `pip install --user --upgrade pipenv`
+3. Clone this repository `git clone https://github.com/antfie/veracode_bulk_mitigator/tree/main`
+4. Ensure you have a [Veracode API credentials file](https://docs.veracode.com/r/c_api_credentials3) configured.
 
 ## Running
 
