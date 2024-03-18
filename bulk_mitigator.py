@@ -110,7 +110,7 @@ def main(
     application_names_file: str,
     number_of_threads: int,
     application_cache_file_path: str,
-    auto_apply_mitigations: bool
+    auto_apply_mitigations: bool,
 ):
     thread_count_pluralised = "" if number_of_threads == 1 else "s"
     console.log(f"Using {number_of_threads} thread{thread_count_pluralised}")

@@ -140,9 +140,8 @@ def acquire_applications(
             applications_to_consider = api.get_applications_by_name(application_name)
 
             for application in applications_to_consider:
-                if application['profile']['name'].lower() == application_name.lower():
+                if application["profile"]["name"].lower() == application_name.lower():
                     applications.append(application)
-
 
             if len(applications) < 1:
                 console.log(
@@ -157,7 +156,7 @@ def acquire_applications(
                 return
 
             # Use the name from the API rather than the file
-            application_name = applications[0]['profile']['name']
+            application_name = applications[0]["profile"]["name"]
 
             app_info = AppSandboxInfo(
                 application_name, applications[0]["guid"], None, None
