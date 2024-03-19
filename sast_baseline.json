@@ -1,0 +1,52 @@
+{
+   "_links": {
+      "root": {
+         "href": "/",
+         "name": "",
+         "templated": false
+      },
+      "self": {
+         "href": "/scans/7e670260-9adc-4e01-956d-fc71f83b471f/findings",
+         "name": "",
+         "templated": false
+      },
+      "help": {
+         "href": "https://help.veracode.com/reader/tS9CaFwL4_lbIEWWomsJoA/ovfZGgu96UINQxIuTqRDwg",
+         "name": "",
+         "templated": false
+      },
+      "create": {
+         "href": "",
+         "name": "",
+         "templated": false
+      },
+      "start": {
+         "href": "",
+         "name": "",
+         "templated": false
+      },
+      "details": {
+         "href": "",
+         "name": "",
+         "templated": false
+      },
+      "upload": {
+         "href": "",
+         "name": "",
+         "templated": false
+      },
+      "cancel": {
+         "href": "",
+         "name": "",
+         "templated": false
+      }
+   },
+   "scan_id": "7e670260-9adc-4e01-956d-fc71f83b471f",
+   "scan_status": "SUCCESS",
+   "message": "Scan successful. Results size: 42 bytes",
+   "modules": [
+      "Python files within veracode_bulk_mitigator.zip"
+   ],
+   "modules_count": 1,
+   "selected_modules": []
+}

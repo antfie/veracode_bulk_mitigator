@@ -2,9 +2,9 @@ from requests import RequestException
 from veracode_api_py.api import VeracodeAPI, Applications, Sandboxes, Findings
 from rich.console import Console
 from time import sleep
-from random import randint
 import logging
 from threading import Lock
+from secrets import  randbelow
 
 # Disable some warnings and traceback logging from the underlying API to prevent clutter in the log
 logging.getLogger("urllib3").setLevel(logging.CRITICAL)
@@ -26,7 +26,7 @@ class API:
             exit(1)
 
     def back_off(self, e: Exception):
-        seconds_to_wait = randint(10, 120)
+        seconds_to_wait = randbelow(111) + 10
         self.console.log(
             f'Backing off for {seconds_to_wait}s due to an API error. Request will be retried. If this occurs often consider reducing the number of threads with the "--number_of_threads" argument'
         )
