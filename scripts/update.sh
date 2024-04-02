@@ -3,4 +3,4 @@
 set -e
 
 pipenv update
-pipenv run pip freeze > requirements.txt
+pipenv requirements > requirements.txt
