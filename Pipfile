@@ -7,6 +7,7 @@ name = "pypi"
 click = "*"
 rich = "*"
 veracode-api-py = "*"
+httpie = "*"
 
 [dev-packages]
 black = "*"
