@@ -122,7 +122,7 @@ def main(
     application_names = []
 
     if all_application_profiles:
-        console.log(f"Identifying all applications...")
+        console.log("Identifying all applications...")
 
         # Try to resolve all application names
         all_applications = api.get_all_applications()
@@ -152,13 +152,18 @@ def main(
 
     if len(mitigations_to_add) < 1:
         console.log("There are no mitigations to apply.")
+
+        if bulk_mitigations.contains_approve_action():
+            console.log(
+                "Note that it is not possible to approve rejected mitigations without some other prior mitigation action."
+            )
         return
 
     mitigations_to_add = sort_and_filter_mitigations(mitigations_to_add)
 
     print_summary(mitigations_to_add)
 
-    if auto_apply_mitigations == False:
+    if not auto_apply_mitigations:
         if not Confirm.ask("Apply mitigations?"):
             return
 

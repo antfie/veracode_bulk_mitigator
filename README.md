@@ -16,13 +16,13 @@ Development teams or security mentors could use this tool to propose mitigations
 
 ### 2. Bulk Accepting Mitigated Flaws
 
-The tool can be used by security teams for bulk-approving mitigations that have been reviewed, where those flaws arise form 2nd party components that are reported in more than one application profile.
+The tool can be used by security teams for bulk-approving or rejecting mitigations that have been reviewed, where those flaws arise form 2nd party components that are reported in more than one application profile.
 
 ## Key Features ✅
 
 * Uses the standard [Veracode API credentials file](https://docs.veracode.com/r/c_configure_api_cred_file)
 * Shows a summary before any action is carried out
-* Can propose and/or approve mitigations in bulk
+* Can propose and/or approve/reject mitigations in bulk
 * Multithreaded for speed
 
 ## What To Mitigate
@@ -107,6 +107,7 @@ mitigations.json is a JSON file which can contain a number of bulk mitigation de
 | false_positive     | If this is present propose a False Positive mitigation                                              |
 | accept_risk        | If this is present propose an Accept The Risk mitigation                                            |
 | approve            | If this is present the mitigation will be approved                                                  |
+| reject             | If this is present the mitigation will be rejected                                                  |
 
 * You can find this information from the Flaw Details section of the Triage Flaws page. 
 
@@ -131,7 +132,8 @@ In the example below you can see how to use the [TSRV](https://docs.veracode.com
     "mitigate_by_design": "Technique : M1 :  Establish and maintain control over all of your inputs\nSpecifics : TODO\nRemaining Risk : TODO\nVerification : TODO",
     "false_positive": "TODO",
     "accept_risk": "Specifics : TODO\nRemaining Risk : TODO\nVerification : TODO",
-    "approve": "TODO"
+    "approve": "TODO",
+    "reject": "TODO"
   }
 ]
 ```

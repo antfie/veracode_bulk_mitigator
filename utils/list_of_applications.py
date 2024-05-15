@@ -5,7 +5,6 @@ from utils.api import API
 from utils.bulk_mitigations_file import BulkMitigations
 from utils.parallel import parallel_execute_tasks_with_progress
 from threading import Lock
-from typing import IO
 
 
 class AppSandboxInfo:

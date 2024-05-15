@@ -6,7 +6,7 @@
          "templated": false
       },
       "self": {
-         "href": "/scans/7e670260-9adc-4e01-956d-fc71f83b471f/findings",
+         "href": "/scans/d075a693-6ee2-49e7-9422-46bd5b9d19a5/findings",
          "name": "",
          "templated": false
       },
@@ -41,11 +41,11 @@
          "templated": false
       }
    },
-   "scan_id": "7e670260-9adc-4e01-956d-fc71f83b471f",
+   "scan_id": "d075a693-6ee2-49e7-9422-46bd5b9d19a5",
    "scan_status": "SUCCESS",
    "message": "Scan successful. Results size: 42 bytes",
    "modules": [
-      "Python files within veracode_bulk_mitigator.zip"
+      "Python files within veracode-auto-pack-veracode_bulk_mitigator-python.zip"
    ],
    "modules_count": 1,
    "selected_modules": []

@@ -4,7 +4,7 @@ from rich.console import Console
 from time import sleep
 import logging
 from threading import Lock
-from secrets import  randbelow
+from secrets import randbelow
 
 # Disable some warnings and traceback logging from the underlying API to prevent clutter in the log
 logging.getLogger("urllib3").setLevel(logging.CRITICAL)
@@ -54,7 +54,7 @@ class API:
                 exit(1)
 
     def get_all_applications(self):
-        self.update_counter(f"get_all_applications")
+        self.update_counter("get_all_applications")
 
         try:
             return Applications().get_all()

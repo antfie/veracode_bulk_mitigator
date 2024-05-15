@@ -30,24 +30,44 @@ def is_candidate_for_bulk_mitigation(
 ) -> bool:
     status = finding["finding_status"]
 
-    if status["status"] != "OPEN":
-        return False
+    # Only check the status if we are not rejecting
+    if bulk_mitigation.reject is not None:
+        # Flaw is already rejected, nothing to do
+        if status["resolution_status"] == "REJECTED":
+            return False
+    else:
+        if status["status"] != "OPEN":
+            return False
 
-    if status["resolution_status"] == "APPROVED":
-        return False
+        if status["resolution_status"] == "APPROVED":
+            return False
 
-    if status["resolution"] == "MITIGATED":
-        return False
+        if status["resolution"] == "MITIGATED":
+            return False
+
+    if bulk_mitigation.approve is not None and not (
+        bulk_mitigation.accept_risk is not None
+        or bulk_mitigation.false_positive is not None
+        or bulk_mitigation.mitigate_by_design is not None
+    ):
+        # Flaw is rejected, there must be some other mitigation action before it can be approved
+        if status["resolution_status"] == "REJECTED":
+            return False
 
     details = finding["finding_details"]
 
     if bulk_mitigation.cwe != int(details["cwe"]["id"]):
         return False
 
-    if bulk_mitigation.module != details["module"]:
+    if bulk_mitigation.module.startswith("*"):
+        if not details["module"].endswith(bulk_mitigation.module.replace("*", "")):
+            return False
+    elif bulk_mitigation.module != details["module"]:
         return False
 
-    if bulk_mitigation.file_path != details["file_path"]:
+    if bulk_mitigation.file_path.replace("\\", "/") != details["file_path"].replace(
+        "\\", "/"
+    ):
         return False
 
     if bulk_mitigation.attack_vector != details["attack_vector"]:
@@ -60,8 +80,8 @@ def is_candidate_for_bulk_mitigation(
     if len(annotations) < 1:
         return True
 
-    # Nothing further to do if we are approving
-    if bulk_mitigation.approve is not None:
+    # Nothing further to do if we are approving or rejecting
+    if bulk_mitigation.approve is not None or bulk_mitigation.reject is not None:
         return True
 
     last_annotation = annotations[0]

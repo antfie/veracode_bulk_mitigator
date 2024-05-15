@@ -14,7 +14,10 @@ rm -f -- scan/*.json
 
 
 echo -e "\n${CYAN}Dependency check...${NC}"
-pipenv check
+
+# 65232 has no update
+# 67599 is disputed
+pipenv check -i 65232 -i 67599
 
 
 echo -e "\n${CYAN}Downloading the Veracode CLI...${NC}"
@@ -30,8 +33,8 @@ echo -e "${CYAN}Packaging for SAST scanning...${NC}"
 
 
 echo -e "\n${CYAN}SAST Scanning with Veracode...${NC}"
-./scan/veracode static scan --baseline-file sast_baseline.json --results-file scan/sast_results.json scan/veracode_bulk_mitigator.zip
+./scan/veracode static scan --baseline-file sast_baseline.json --results-file scan/sast_results.json scan/veracode-auto-pack-veracode_bulk_mitigator-python.zip
 
 
 echo -e "\n${CYAN}Generating SBOMs...${NC}"
-./scan/veracode sbom --type archive --source scan/veracode_bulk_mitigator.zip --output scan/src.sbom.json
+./scan/veracode sbom --type archive --source scan/veracode-auto-pack-veracode_bulk_mitigator-python.zip --output scan/src.sbom.json

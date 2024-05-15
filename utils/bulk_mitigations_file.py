@@ -30,6 +30,13 @@ class BulkMitigation:
 
         self.cwe = int(data["cwe"])
         self.module = data["module"]
+
+        if self.module.count("*") > 1:
+            console.log(
+                "There can only be one wildcard character used for module resolution"
+            )
+            exit(1)
+
         self.file_path = data["file_path"]
         self.attack_vector = data["attack_vector"]
         self.line_number = int(data["line_number"])
@@ -41,12 +48,14 @@ class BulkMitigation:
         )
         self.accept_risk = None if "accept_risk" not in data else data["accept_risk"]
         self.approve = None if "approve" not in data else data["approve"]
+        self.reject = None if "reject" not in data else data["reject"]
 
         if (
             self.mitigate_by_design is None
             and self.false_positive is None
             and self.accept_risk is None
             and self.approve is None
+            and self.reject is None
         ):
             console.log(
                 f'Bulk mitigation "{self.friendly_name}" does not specify at least one action of "mitigate_by_design", "false_positive", "accept_risk" or "approve".'
@@ -56,6 +65,30 @@ class BulkMitigation:
         if self.mitigate_by_design is not None and self.false_positive is not None:
             console.log(
                 f'Bulk mitigation "{self.friendly_name}" cannot specify both "mitigate_by_design" and "false_positive".'
+            )
+            exit(1)
+
+        if self.approve is not None and self.reject is not None:
+            console.log(
+                f'Bulk mitigation "{self.friendly_name}" cannot specify both "approve" and "reject".'
+            )
+            exit(1)
+
+        if self.false_positive is not None and self.reject is not None:
+            console.log(
+                f'Bulk mitigation "{self.friendly_name}" cannot specify both "false_positive" and "reject".'
+            )
+            exit(1)
+
+        if self.accept_risk is not None and self.reject is not None:
+            console.log(
+                f'Bulk mitigation "{self.friendly_name}" cannot specify both "accept_risk" and "reject".'
+            )
+            exit(1)
+
+        if self.mitigate_by_design is not None and self.reject is not None:
+            console.log(
+                f'Bulk mitigation "{self.friendly_name}" cannot specify both "mitigate_by_design" and "reject".'
             )
             exit(1)
 
@@ -74,6 +107,9 @@ class BulkMitigation:
 
         if self.approve is not None:
             actions["ACCEPTED"] = self.approve
+
+        if self.reject is not None:
+            actions["REJECTED"] = self.reject
 
         return actions
 
@@ -107,6 +143,13 @@ class BulkMitigations:
     def is_policy_in_scope(self) -> bool:
         for item in self.items:
             if item.process_policy:
+                return True
+
+        return False
+
+    def contains_approve_action(self) -> bool:
+        for item in self.items:
+            if item.approve is not None:
                 return True
 
         return False
