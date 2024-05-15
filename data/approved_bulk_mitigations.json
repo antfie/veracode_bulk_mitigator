@@ -14,6 +14,7 @@
     "mitigate_by_design": "Technique : M1 :  Establish and maintain control over all of your inputs\nSpecifics : TODO\nRemaining Risk : TODO\nVerification : TODO",
     "false_positive": "TODO",
     "accept_risk": "Specifics : TODO\nRemaining Risk : TODO\nVerification : TODO",
-    "approve": "TODO"
+    "approve": "TODO",
+    "reject": "TODO"
   }
 ]
