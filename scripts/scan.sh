@@ -9,7 +9,7 @@ CYAN='\033[1;36m'
 NC='\033[0m' # No Color
 
 mkdir -p scan
-rm -f -- scan/veracode_bulk_mitigator.zip
+rm -f -- scan/veracode-auto-pack-veracode_bulk_mitigator-python.zip
 rm -f -- scan/*.json
 
 
