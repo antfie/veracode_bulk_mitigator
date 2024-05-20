@@ -43,7 +43,7 @@ The tool will not take any mitigation action until the user explicitly enters "y
 
 You can see a demo of the tool below:
 
-![example.png](docs%2Fexample.png)
+![example.png](docs/example.png)
 
 ## Multiple Mitigation Actions
 
