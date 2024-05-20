@@ -109,7 +109,7 @@ mitigations.json is a JSON file which can contain a number of bulk mitigation de
 | approve            | If this is present the mitigation will be approved                                                  |
 | reject             | If this is present the mitigation will be rejected                                                  |
 
-* You can find this information from the Flaw Details section of the Triage Flaws page. 
+&ast; You can find this information from the Flaw Details section of the Triage Flaws page. 
 
 ### Example
 
