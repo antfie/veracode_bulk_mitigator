@@ -22,7 +22,7 @@ PySocks==1.7.1
 requests==2.32.3
 requests-toolbelt==1.0.0
 rich==13.7.1
-setuptools==74.0.0
+setuptools==75.1.0
 urllib3==2.2.2
 veracode-api-signing==22.3.0
 veracode_api_py==0.9.47
