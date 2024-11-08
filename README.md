@@ -1,10 +1,12 @@
+![GitHub License](https://img.shields.io/github/license/antfie/veracode_bulk_mitigator)
+
 # Veracode SAST Bulk Mitigator
 
 **Note this tool is not an official Veracode product. It comes with no support or warranty.**
 
 ## Introduction
 
-This tool performs bulk mitigation actions on open SAST flaws reported in multiple application profiles. The definitions of what to mitigate (e.g. file name, line number) and the mitigation comments and actions to apply are defined via a JSON file. Application profile names to target are specified via a text file or alternatively a flag can be set to process all application profiles.
+This tool performs bulk mitigation actions on open Veracode SAST flaws reported in multiple application profiles. The definitions of what to mitigate (e.g. file name, line number) and the mitigation comments and actions to apply are defined via a JSON file. Application profile names to target are specified via a text file or alternatively a flag can be set to process all application profiles.
 
 There are two primary uses cases this tool solves:
 1. Bulk mitigating flaws - useful for development teams/security champions
