@@ -1,4 +1,5 @@
 ![GitHub License](https://img.shields.io/github/license/antfie/veracode_bulk_mitigator)
+![GitHub Pipenv locked Python version](https://img.shields.io/github/pipenv/locked/python-version/antfie/veracode_bulk_mitigator)
 
 # Veracode SAST Bulk Mitigator
 
