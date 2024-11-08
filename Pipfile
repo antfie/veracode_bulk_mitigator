@@ -4,26 +4,15 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-certifi = "==2024.7.4"
-charset-normalizer = "==3.3.2"
-click = "==8.1.7"
-defusedxml = "==0.7.1"
-docopt = "==0.6.2"
-httpie = "==3.2.2"
-idna = "==3.7"
-markdown-it-py = "==3.0.0"
-mdurl = "==0.1.2"
-multidict = "==6.0.5"
-pygments = "==2.18.0"
-pysocks = "==1.7.1"
-requests = {extras = ["socks"], version = "==2.32.3"}
-requests-toolbelt = "==1.0.0"
-rich = "==13.7.1"
-urllib3 = "==2.2.2"
-veracode-api-py = "==0.9.47"
-veracode-api-signing = "==22.3.0"
+click = "*"
+requests = "*"
+rich = "*"
+veracode-api-py = "*"
 
 [dev-packages]
 
 [requires]
-python_version = "3.12"
+python_version = "3.13"
+
+[scripts]
+bulk_mitigator = "python3 bulk_mitigator.py"
