@@ -6,12 +6,12 @@
          "templated": false
       },
       "self": {
-         "href": "/scans/d075a693-6ee2-49e7-9422-46bd5b9d19a5/findings",
+         "href": "/scans/46c4cd93-685c-4cf4-b8a0-de91c8c6ef58/findings",
          "name": "",
          "templated": false
       },
       "help": {
-         "href": "https://help.veracode.com/reader/tS9CaFwL4_lbIEWWomsJoA/ovfZGgu96UINQxIuTqRDwg",
+         "href": "https://docs.veracode.com/",
          "name": "",
          "templated": false
       },
@@ -41,12 +41,14 @@
          "templated": false
       }
    },
-   "scan_id": "d075a693-6ee2-49e7-9422-46bd5b9d19a5",
+   "scan_id": "46c4cd93-685c-4cf4-b8a0-de91c8c6ef58",
    "scan_status": "SUCCESS",
    "message": "Scan successful. Results size: 42 bytes",
    "modules": [
       "Python files within veracode-auto-pack-veracode_bulk_mitigator-python.zip"
    ],
    "modules_count": 1,
-   "selected_modules": []
+   "selected_modules": [
+      "Python files within veracode-auto-pack-veracode_bulk_mitigator-python.zip"
+   ]
 }
