@@ -19,11 +19,17 @@ class API:
         self.lock = Lock()
 
         console.log("Testing API connectivity...")
-        if not self.test_connection():
-            console.log(
-                "Error: Could not connect to the Veracode API. Check your Veracode API account credentials."
-            )
-            exit(1)
+        try:
+            if not self.test_connection():
+                self.bail_bad_auth()
+        except Exception as e:
+            self.bail_bad_auth()
+
+    def bail_bad_auth(self):
+        self.console.log(
+            "Error: Could not connect to the Veracode API. Check your Veracode API account credentials. Also note you must use credentials for an API user account (not human user account), see: https://docs.veracode.com/r/admin_api). Also: https://docs.veracode.com/r/c_api_credentials3"
+        )
+        exit(1)
 
     def back_off(self, e: Exception):
         seconds_to_wait = randbelow(111) + 10

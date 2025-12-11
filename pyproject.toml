@@ -1,0 +1,14 @@
+[project]
+name = "veracode-bulk-mitigator"
+version = "0.1.0"
+description = "https://github.com/antfie/veracode_bulk_mitigator"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "black>=25.12.0",
+    "click>=8.3.1",
+    "flake8>=7.3.0",
+    "requests>=2.32.5",
+    "rich>=14.2.0",
+    "veracode-api-py>=0.9.62",
+]

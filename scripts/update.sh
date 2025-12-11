@@ -2,5 +2,5 @@
 
 set -e
 
-pipenv update
-pipenv run pip freeze > requirements.txt
+uv sync --upgrade
+uv pip freeze > requirements.txt

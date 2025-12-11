@@ -1,5 +1,4 @@
 ![GitHub License](https://img.shields.io/github/license/antfie/veracode_bulk_mitigator)
-![GitHub Pipenv locked Python version](https://img.shields.io/github/pipenv/locked/python-version/antfie/veracode_bulk_mitigator)
 
 # Veracode SAST Bulk Mitigator
 
@@ -65,8 +64,7 @@ a [Veracode API credentials file](https://docs.veracode.com/r/c_configure_api_cr
 
 Follow these steps to install the tool:
 
-1. Ensure you have [Python 3](https://www.python.org/downloads/) installed.
-2. Install [Pipenv](https://pipenv.pypa.io/) typically via your package manager or by running `pip install --user --upgrade pipenv`
+1. Install [uv](https://docs.astral.sh/uv/getting-started/installation/).
 3. Clone this repository `git clone https://github.com/antfie/veracode_bulk_mitigator/tree/main`
 4. Ensure you have a [Veracode API credentials file](https://docs.veracode.com/r/c_api_credentials3) configured.
 
@@ -77,7 +75,7 @@ Follow these steps to install the tool:
 3. Run the below command to run the tool. Note that the tool will not make any changes unless you enter "y" at the prompt following the summary of mitigations to add.
 
     ```bash
-    pipenv run bulk_mitigator
+    uv run bulk_mitigator.py
     ```
 
 ## Command Arguments
@@ -143,13 +141,7 @@ In the example below you can see how to use the [TSRV](https://docs.veracode.com
 
 ## Troubleshooting
 
-If you experience issues running pipenv see this [guide](https://pipenv.pypa.io/en/latest/installation.html). On Windows you may need to update your path environment variable. Alternatively try running pipenv via python like so:
-
-```bash
-python3 -m pipenv run bulk_mitigator
-```
-
-Finally, as a last resort consider using pip to install the dependencies:
+As a last resort consider using pip to install the dependencies:
 
 ```bash
 python3 -m pip install --user -r requirements.txt
@@ -161,7 +153,7 @@ python3 bulk_mitigator.py
 When repeatedly running the tool it helps to cache some of the requests to speed things up. Use this flag to do that:
 
 ```bash
-pipenv run bulk_mitigator --application-cache-file-path=data/application_cache.csv
+uv run bulk_mitigator.py --application-cache-file-path=data/application_cache.csv
 ```
 
 Note that if an application or sandbox is renamed/added/deleted then the cache may have stale data, so it is recommended to clear the cache file regularly.
@@ -171,5 +163,5 @@ Note that if an application or sandbox is renamed/added/deleted then the cache m
 There is a script to lint the code, keep dependencies up to date and run some tests:
 
 ```bash
-pipenv run test
+uv run test
 ```
