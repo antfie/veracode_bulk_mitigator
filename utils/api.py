@@ -1,5 +1,5 @@
 from requests import RequestException
-from veracode_api_py.api import VeracodeAPI, Applications, Sandboxes, Findings
+from veracode_api_py.api import APICredentials, Applications, Sandboxes, Findings, Users
 from rich.console import Console
 from time import sleep
 import logging
@@ -19,11 +19,7 @@ class API:
         self.lock = Lock()
 
         console.log("Testing API connectivity...")
-        try:
-            if not self.test_connection():
-                self.bail_bad_auth()
-        except Exception as e:
-            self.bail_bad_auth()
+        self.assert_connection()
 
     def bail_bad_auth(self):
         self.console.log(
@@ -38,12 +34,23 @@ class API:
         )
         sleep(seconds_to_wait)
 
-    def test_connection(self) -> bool:
+    def assert_connection(self) -> None:
         try:
-            VeracodeAPI().healthcheck()
-            return True
+            APICredentials().get_self()
+        except Exception as e:
+            self.console.log(
+                "Error: There was a problem reading your API credentials. Ensure you have a credentials file as documented here: https://docs.veracode.com/r/c_api_credentials3. Check your Veracode API account credentials. You must use credentials for an API user account (not human user account), see: https://docs.veracode.com/r/admin_api)"
+            )
+            exit(1)
+
+        try:
+            current_user = Users().get_self()
+            return current_user["login_enabled"]
         except RequestException:
-            return False
+            self.console.log(
+                "Error: Could not connect to the Veracode API. Check your Veracode API account credentials. You must use credentials for an API user account (not human user account), see: https://docs.veracode.com/r/admin_api). Also note: https://docs.veracode.com/r/c_api_credentials3"
+            )
+            exit(1)
 
     def update_counter(self, request_signature):
         with self.lock:
