@@ -39,16 +39,22 @@ class API:
             APICredentials().get_self()
         except Exception as e:
             self.console.log(
-                "Error: There was a problem reading your API credentials. Ensure you have a credentials file as documented here: https://docs.veracode.com/r/c_api_credentials3. Check your Veracode API account credentials. You must use credentials for an API user account (not human user account), see: https://docs.veracode.com/r/admin_api)"
+                "Error: There was a problem reading your API credentials. Ensure you have a credentials file as documented here: https://docs.veracode.com/r/c_api_credentials3. Check your Veracode API account credentials."
             )
             exit(1)
 
         try:
-            current_user = Users().get_self()
-            return current_user["login_enabled"]
+            response = Users().get_self()
+            if "http_status" in response and "Unauthorized" in response["http_status"]:
+                self.console.log(
+                    "Error: We were able to connect to the Veracode API but your API credentials are unauthorized. Have they expired or been revoked? Check your Veracode API account credentials."
+                )
+                exit(1)
+
+            return response["login_enabled"]
         except RequestException:
             self.console.log(
-                "Error: Could not connect to the Veracode API. Check your Veracode API account credentials. You must use credentials for an API user account (not human user account), see: https://docs.veracode.com/r/admin_api). Also note: https://docs.veracode.com/r/c_api_credentials3"
+                "Error: Could not connect to the Veracode API. Check your Veracode API account credentials. You must use credentials for an API user account (not human user account). See: https://docs.veracode.com/r/admin_api, https://docs.veracode.com/r/c_api_credentials3."
             )
             exit(1)
 
